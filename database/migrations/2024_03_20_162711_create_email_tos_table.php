@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('emails_from', function (Blueprint $table) {
+        Schema::create('emails_to', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('email_to_id')->references('id')->on('emails_to')->constrained();
             $table->string('address', 100);
             $table->timestamps();
         });
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('emails_from');
+        Schema::dropIfExists('emails_to');
     }
 };

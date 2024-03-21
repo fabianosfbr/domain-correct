@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('emails_from', function (Blueprint $table) {
+        Schema::create('domain_not_corrects', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('email_to_id')->references('id')->on('emails_to')->constrained();
+            $table->foreignUuid('not_correct_id')->references('id')->on('domain_corrects')->constrained();
             $table->string('address', 100);
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('emails_from');
+        Schema::dropIfExists('domain_not_corrects');
     }
 };

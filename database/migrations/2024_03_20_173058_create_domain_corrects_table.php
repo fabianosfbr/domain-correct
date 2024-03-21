@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('email_tos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('domain_corrects', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('address', 100);
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('email_tos');
+        Schema::dropIfExists('domain_corrects');
     }
 };
