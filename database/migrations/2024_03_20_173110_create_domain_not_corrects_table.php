@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('domain_not_corrects', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('not_correct_id')->references('id')->on('domain_corrects')->constrained();
-            $table->string('address', 100);
+            $table->string('address', 100)->index();
             $table->timestamps();
         });
     }

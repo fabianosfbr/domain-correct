@@ -35,7 +35,8 @@ class DomainCorrectResource extends Resource
         return $table
             ->paginated([10, 25, 50, 100])
             ->columns([
-                TextColumn::make('address'),
+                TextColumn::make('address')
+                ->searchable(),
                 TextColumn::make('not_correct_count')
                     ->counts('not_correct')
                     ->label('Nº Not Correct'),
@@ -44,7 +45,8 @@ class DomainCorrectResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->label('Not Correct'),
             ])
             ->bulkActions([]);
     }

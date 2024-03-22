@@ -29,6 +29,7 @@ class NotCorrectRelationManager extends RelationManager
     {
         return $table
             ->recordTitleAttribute('address')
+            ->heading('List of not correct addresses')
             ->paginated([10, 25, 50, 100])
             ->columns([
                 Tables\Columns\TextColumn::make('address'),

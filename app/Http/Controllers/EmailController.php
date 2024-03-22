@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateEmailRequest;
+use App\Service\DomainValidationService;
 use Illuminate\Http\Request;
 
 class EmailController extends Controller
 {
 
 
+    public function __construct(
+        protected DomainValidationService $domainValidationService
+    ) {
+    }
 
     /**
      * @param  Request  $request  Request data
@@ -19,9 +25,11 @@ class EmailController extends Controller
      *
      * @response array{data: array{array{email: "user@example.com", user: "user", domain: "example.com", sugestion: "validexample.com"}}}
      */
-    public function validate(Request $request)
+    public function validate(ValidateEmailRequest $request)
     {
 
-        return response()->json(['data' => 'ok'], 200);
+        $validatedEmails = $this->domainValidationService->validate(collect($request->data));
+
+        return response()->json($validatedEmails->toArray(), 200);
     }
 }

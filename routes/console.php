@@ -6,9 +6,12 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
 Artisan::command('play', function () {
-    $emailTo = EmailTo::where('address', '9v5XG@example.com')->first();
 
+    $email = 'email@gmaill.com';
 
-    $emailTo->emailsFrom()->create(['address', 'exaample.com']);
+    $repository = new \App\Repository\DomainCorrecRepository();
+    $domain = $repository->getNotDomainCorrect($email);
+
+    dd($domain->correct->address);
 
 });
