@@ -23,7 +23,7 @@ class EmailController extends Controller
      *
      * validate
      *
-     * @response array{data: array{array{email: "user@example.com", user: "user", domain: "example.com", sugestion: "validexample.com"}}}
+     * @response array{data: array{array{email: "user@example.com", is_valid: true, user: "user", domain: "example.com", sugestion: "validexample.com"}}}
      */
     public function validate(ValidateEmailRequest $request)
     {

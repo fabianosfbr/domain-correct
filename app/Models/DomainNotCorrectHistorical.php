@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 
-class DomainNotCorretHistorical extends Model
+class DomainNotCorrectHistorical extends Model
 {
     use HasFactory, HasUuids;
 

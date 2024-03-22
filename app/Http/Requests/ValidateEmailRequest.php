@@ -33,8 +33,8 @@ class ValidateEmailRequest extends FormRequest
     {
         return [
             'data.required' => 'É obrigatório o array de dados contendo o email',
-            'data.*.required' => 'Slug is required',
             'data.*.email' => 'E-mail informado é inválido',
         ];
     }
 }
+

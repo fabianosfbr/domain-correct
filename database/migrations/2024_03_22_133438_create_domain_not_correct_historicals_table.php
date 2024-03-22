@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('domain_not_corret_historicals', function (Blueprint $table) {
+        Schema::create('domain_not_correct_historicals', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('address', 100)->index();
             $table->timestamps();
