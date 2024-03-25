@@ -1,66 +1,135 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+	<h2 align="center">Domain Correct API</h2>
+</p>
+<h4 align="center"> 
+	🚧  Projeto 🚀 em construção...  🚧
+</h4>
+<p align="center">
+	<img src="https://img.shields.io/badge/version project-1.0-brightgreen" alt="version project">
+    <img src="https://img.shields.io/badge/Php-8.3.3-informational" alt="stack php">
+    <img src="https://img.shields.io/badge/Laravel-11.00-informational&color=brightgreen" alt="stack laravel">
+	<a href="https://opensource.org/licenses/GPL-3.0">
+		<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GPLv3 License">
+	</a>
 </p>
 
-## About Laravel
+---
+### :package: dependências do projeto
+ - Docker + docker-compose
+ - curl
+ - Make 4.x
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
+### :books: Configurando o projeto em um novo ambiente
+Simplesmente execute o comando `make` no seu terminal:
+```bash
+make
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Agora, basta acessar a URL `http://localhost`
+## :information_source: Como Utilizar a API
+A api verifica a estrutura do email verificando se as informações do email são válidas.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O envio do parâmetro email no corpo da requisição é obrigatório.
+### :elephant: Enviando Requisição em PHP
+  Enviando requisição via Guzzle
+ ```
+<?php
 
-## Learning Laravel
+$client = new \GuzzleHttp\Client();
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+$response = $client->request('POST', 'http://localhost:8001/v1/email/validate', [
+  'body' => '{
+  "email": "teste@example.com"
+}',
+  'headers' => [
+    'Accept' => 'application/json',
+    'Content-Type' => 'application/json',
+  ],
+]);
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+echo $response->getBody();
+ ```
+ Enviando a Requisição via Curl
+ ```
+<?php
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+$curl = curl_init();
 
-## Laravel Sponsors
+curl_setopt_array($curl, [
+  CURLOPT_PORT => "80",
+  CURLOPT_URL => "http://localhost/v1/email/validate",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => json_encode([
+    'email' => 'teste@example.com'
+  ]),
+  CURLOPT_HTTPHEADER => [
+    "Accept: application/json",
+    "Content-Type: application/json"
+  ],
+]);
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+$response = curl_exec($curl);
+$err = curl_error($curl);
 
-### Premium Partners
+curl_close($curl);
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+ ```
+### Enviando Requisição em Node.js
+Enviando requisição via Fetch
+ ```
+ const fetch = require('node-fetch');
 
-## Contributing
+const url = 'http://localhost/v1/email/validate';
+const options = {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+  body: '{"email":"teste@example.com"}'
+};
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+try {
+  const response = await fetch(url, options);
+  const data = await response.json();
+  console.log(data);
+} catch (error) {
+  console.error(error);
+}
+ ```
+ #### Para verificar como enviar a requisição em outras linguagens consulte a documentação no link abaixo.
 
-## Code of Conduct
+### :inbox_tray: Exemplo de Retorno
+```
+{
+	"data": [
+    {
+      "email": "user@example.com",
+      "is_valid": true,
+      "user": "user",
+      "domain": "example.com",
+      "sugestion": "validexample.com"
+    }
+  ]
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Documentação da API
+  - Basta acessar a URL `http://localhost/docs/api`
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+### :recycle: Orientações
+ - Caso tenha algum problema com a instalação, execute o comando `make rebuild`
+ - Para fazer uma nova instalação execute o comando `make`
+ - Inicializar os container do projeto execute o comando `make up`
+ - Encerrar os container do projeto execute o comando `make down`
+ - Maiores informações, vide o arquivo Makefile
+ - Correr pro abraço!
