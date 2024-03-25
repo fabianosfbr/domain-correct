@@ -31,6 +31,10 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(asset('images/logo-white.png'))
             ->brandLogoHeight('38px')
             ->login()
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
+            ->profile()
             ->topNavigation(true)
             ->colors([
                 'primary' => Color::Blue,
