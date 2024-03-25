@@ -34,6 +34,8 @@ class DomainCorrectResource extends Resource
     {
         return $table
             ->paginated([10, 25, 50, 100])
+            ->recordUrl(null)
+            ->striped()
             ->columns([
                 TextColumn::make('address')
                 ->searchable(),

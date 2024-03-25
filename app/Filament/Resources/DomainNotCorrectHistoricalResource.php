@@ -7,6 +7,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Illuminate\Support\Facades\DB;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\DomainNotCorrectHistorical;
@@ -32,18 +33,22 @@ class DomainNotCorrectHistoricalResource extends Resource
     {
         return $table
             ->paginated([10, 25, 50, 100])
+            ->recordUrl(null)
+            ->striped()
             ->columns([
-                TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('not_correct_count')
-                    ->label('Nº Not Correct'),
+                TextColumn::make('address'),
+                TextColumn::make('created_at')
+                    ->date('d/m/Y'),
+                TextColumn::make('total')
+                    ->label('Nº Occurrences'),
                 //
             ])
             ->filters([
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->label('Vincular'),
             ])
             ->bulkActions([]);
     }
@@ -62,5 +67,18 @@ class DomainNotCorrectHistoricalResource extends Resource
             'create' => Pages\CreateDomainNotCorrectHistorical::route('/create'),
             'edit' => Pages\EditDomainNotCorrectHistorical::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->select(
+                DB::raw('MIN(id) as id'),
+                DB::raw('MAX(created_at) as created_at'),
+                DB::raw('address'),
+                DB::raw('count(*) as total')
+            )
+            ->orderBy('created_at', 'desc')
+            ->groupBy('address');
     }
 }
