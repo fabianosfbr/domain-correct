@@ -41,58 +41,7 @@ return [
         usados em campanhas de marketing, cadastros de usuários, ou qualquer outro caso de uso onde endereços de e-mail precisam ser confirmados.
         \n\n 🌐 Funcionalidades\n\n `Validação de Sintaxe` \n\n Verifica se o formato do endereço de e-mail está correto conforme as regras padrão para endereços de e-mail.
         \n\n `Sugestão de Domínio` \n\n Para e-mails com domínios potencialmente errados, a API sugere o domínio mais provável, ajudando a corrigir erros de digitação (por exemplo, 'gamil.com' seria sugerido como 'gmail.com').
-        \n\n 🧰 Fácil Integração \n\n Integração ágil e facilitada para diversas linguagens. Exemplos:
-        \n\n `NodeJS` \n\n
-        const fetch = require('node-fetch');
-
-            const url = 'http://localhost:8001/v1/email/validate';
-            const options = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-            body: '{\"email\":\"teste@example.com\"}'
-            };
-
-            try {
-                const response = await fetch(url, options);
-                const data = await response.json();
-                console.log(data);
-            } catch (error) {
-                console.error(error);
-            }.
-        \n\n `PHP` \n\n
-            <?php
-
-                \$client = new \GuzzleHttp\Client();
-
-                \$response = \$client->request('POST', 'http://localhost:8001/v1/email/validate', [
-                    'body' => '{
-                        \"email\": \"teste@example.com\"
-                    }',
-                    'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    ],
-                ]);
-
-            echo \$response->getBody();
-        \n\n `cUrl` \n\n
-            curl --request POST \
-            --url http://localhost/api/email/validate \
-            --header 'Accept: application/json' \
-            --header 'Content-Type: application/json' \
-            --data '{}'.
-        \n\n### Exemplo de Retorno\n\n
-        json
-        {
-            \"data\": [
-                {
-                    \"email\": \"teste@example.com\",
-                    \"user\": \"user\",
-                    \"domain\": \"example.com\",
-                    \"sugestion\": \"validexample.com\"
-                }
-            ]
-        }
+        \n\n 🧰 Fácil Integração \n\n Integração ágil e facilitada para diversas linguagens
 
         ",
     ],
