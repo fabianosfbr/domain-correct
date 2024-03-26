@@ -2,17 +2,21 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
+use Livewire\Livewire;
+use App\Models\DomainCorrect;
+use Filament\Actions\DeleteAction;
+use Illuminate\Foundation\Testing\WithFaker;
 use App\Filament\Resources\DomainCorrectResource;
 use App\Filament\Resources\DomainCorrectResource\Pages\EditDomainCorrect;
-use App\Models\DomainCorrect;
 use App\Models\DomainNotCorrect;
-use Filament\Actions\DeleteAction;
-use Livewire\Livewire;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 it('can render the index page', function () {
 
     $this->get(DomainCorrectResource::getUrl('index'))->assertSuccessful();
 });
+
 
 it('can render the create page', function () {
 
@@ -77,7 +81,7 @@ it('can update the domain correct', function () {
         ])->make();
 
     Livewire::test(DomainCorrectResource\Pages\EditDomainCorrect::class, [
-        'record' => $domain->getRouteKey(),
+        'record' => $domain->getRouteKey()
     ])
         ->fillForm([
             'name' => $newDomain->name,
@@ -93,7 +97,7 @@ it('can validate form errors on edit', function (DomainCorrect $updateDomain) {
     $domain = DomainCorrect::factory()->create();
 
     Livewire::test(DomainCorrectResource\Pages\EditDomainCorrect::class, [
-        'record' => $domain->getRouteKey(),
+        'record' => $domain->getRouteKey()
     ])
         ->fillForm([
             'name' => $updateDomain->name,
@@ -122,7 +126,7 @@ it('can delete a domain from the edit domain form', function () {
     $domain = DomainCorrect::factory()->create();
 
     Livewire::test(DomainCorrectResource\Pages\EditDomainCorrect::class, [
-        'record' => $domain->getRouteKey(),
+        'record' => $domain->getRouteKey()
     ])
         ->callAction(DeleteAction::class);
 
