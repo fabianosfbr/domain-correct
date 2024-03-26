@@ -19,10 +19,16 @@
         "enabled": true,
         "actions": [
             {
+                "action": "./vendor/bin/sail art optimize:clear"
+            },
+            {
                 "action": "./vendor/bin/sail pest"
             },
             {
-                "action": "./vendor/bin/phpstan analyse --memory-limit=2G"
+                "action": "./vendor/bin/sail bin pint -v"
+            },
+            {
+                "action": "./vendor/bin/sail bin phpstan analyse --memory-limit=2G"
             }
 
         ]
