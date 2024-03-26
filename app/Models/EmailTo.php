@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class EmailTo extends Model
 {
@@ -15,7 +15,7 @@ class EmailTo extends Model
 
     protected $fillable = [
         'address',
-        'email_to_id'
+        'email_to_id',
     ];
 
     public function emailsFrom()

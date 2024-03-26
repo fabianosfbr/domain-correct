@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-
-
 Route::prefix('email')->group(function () {
     Route::post('/validate', [EmailController::class, 'validate'])->name('email.validate');
 });

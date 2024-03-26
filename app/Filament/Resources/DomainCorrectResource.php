@@ -3,18 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DomainCorrectResource\Pages;
-use App\Filament\Resources\DomainCorrectResource\RelationManagers;
 use App\Filament\Resources\DomainCorrectResource\RelationManagers\NotCorrectRelationManager;
 use App\Models\DomainCorrect;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DomainCorrectResource extends Resource
 {
@@ -29,8 +25,8 @@ class DomainCorrectResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
-                ->label('Domínio')
-                ->required(),
+                    ->label('Domínio')
+                    ->required(),
             ]);
     }
 
@@ -42,8 +38,8 @@ class DomainCorrectResource extends Resource
             ->striped()
             ->columns([
                 TextColumn::make('name')
-                ->label('Domínio')
-                ->searchable(),
+                    ->label('Domínio')
+                    ->searchable(),
                 TextColumn::make('not_correct_count')
                     ->counts('not_correct')
                     ->label('Nº Sugestões'),
@@ -53,7 +49,7 @@ class DomainCorrectResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                ->label('Sugestões'),
+                    ->label('Sugestões'),
             ])
             ->bulkActions([]);
     }

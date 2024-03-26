@@ -8,15 +8,13 @@ use Illuminate\Http\Request;
 
 class EmailController extends Controller
 {
-
-
     public function __construct(
         protected DomainValidationService $domainValidationService
     ) {
     }
 
     /**
-     * @param  Request  $request  Request data
+     * @param  ValidateEmailRequest  $request  Request data
      * @return \Illuminate\Http\JsonResponse
      *
      * @queryParam data array required Array of data to validate.

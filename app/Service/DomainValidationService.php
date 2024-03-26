@@ -2,9 +2,9 @@
 
 namespace App\Service;
 
-use Illuminate\Support\Collection;
-use App\Repository\DomainCorrecRepository;
 use App\Events\DomainNotValidateHistoricalEvent;
+use App\Repository\DomainCorrecRepository;
+use Illuminate\Support\Collection;
 
 class DomainValidationService
 {
@@ -24,20 +24,21 @@ class DomainValidationService
 
             $validated = null;
 
-            if (!$checkMx) {
+            if (! $checkMx) {
 
                 $validated = $this->domainRepository->getNotDomainCorrect($item['email']);
 
-                if (!$validated) {
+                if (! $validated) {
                     event(new DomainNotValidateHistoricalEvent($userDomain[1]));
                 }
             }
+
             return [
                 'email' => $item['email'],
                 'is_valid' => $checkMx,
                 'user' => $userDomain[0],
                 'domain' => $validated?->address ?? $userDomain[1],
-                'sugestion' => $validated?->correct->name,
+                'sugestion' => $validated?->correct()->name,
             ];
         });
     }

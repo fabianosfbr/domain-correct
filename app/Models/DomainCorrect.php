@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class DomainCorrect extends Model
 {
@@ -20,5 +20,4 @@ class DomainCorrect extends Model
             'id' // localKey => Primary Key In Parent Table By Default is Id
         );
     }
-
 }

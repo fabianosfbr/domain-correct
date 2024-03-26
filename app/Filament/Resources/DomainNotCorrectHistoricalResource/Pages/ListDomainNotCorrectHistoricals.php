@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources\DomainNotCorrectHistoricalResource\Pages;
 
-use Filament\Actions;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Query\Builder;
-use Filament\Resources\Pages\ListRecords;
 use App\Filament\Resources\DomainNotCorrectHistoricalResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ListRecords;
 
 class ListDomainNotCorrectHistoricals extends ListRecords
 {
@@ -18,6 +16,4 @@ class ListDomainNotCorrectHistoricals extends ListRecords
             // Actions\CreateAction::make(),
         ];
     }
-
-
 }

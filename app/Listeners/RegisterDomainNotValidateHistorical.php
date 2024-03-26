@@ -2,10 +2,9 @@
 
 namespace App\Listeners;
 
-use Illuminate\Queue\InteractsWithQueue;
+use App\Events\DomainNotValidateHistoricalEvent;
 use App\Repository\DomainCorrecRepository;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Events\DomainNotValidateHistoricalEvent;
 
 class RegisterDomainNotValidateHistorical implements ShouldQueue
 {
@@ -14,8 +13,7 @@ class RegisterDomainNotValidateHistorical implements ShouldQueue
      */
     public function __construct(
         private readonly DomainCorrecRepository $domainRepository
-    )
-    {
+    ) {
         //
     }
 
