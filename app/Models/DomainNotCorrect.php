@@ -14,6 +14,6 @@ class DomainNotCorrect extends Model
 
     public function correct()
     {
-        return $this->belongsTo(DomainCorrect::class, 'not_correct_id');
+        return $this->belongsTo(DomainCorrect::class, 'domain_correct_id');
     }
 }

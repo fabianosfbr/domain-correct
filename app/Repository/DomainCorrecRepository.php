@@ -7,7 +7,8 @@ use App\Models\DomainNotCorrectHistorical;
 
 class DomainCorrecRepository
 {
-    public function getNotDomainCorrect(string $email): ?DomainNotCorrect
+
+    public function getNotDomainCorrect(string $email): DomainNotCorrect|null
     {
         $domain = explode('@', $email)[1];
 
@@ -15,7 +16,8 @@ class DomainCorrecRepository
         return DomainNotCorrect::with('correct')->where('name', $domain)->first();
     }
 
-    public function historical(string $domain): ?DomainNotCorrectHistorical
+
+    public function historical(string $domain): DomainNotCorrectHistorical|null
     {
 
         return DomainNotCorrectHistorical::create(['name' => $domain]);
