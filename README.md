@@ -47,20 +47,21 @@ make restart // executa make down e make up
 make populate // roda migrate:fresh --seed
 ```
 
-```bash
-make stan // analisador erros no código
-```
-
-```bash
-make pint // aplica estilização de código conforme PSR
-```
 
 ## :information_source: Ferramentas de desenvolvimento
 
 **Laravel Stan** é uma ferramenta de análise estática para o PHP. Ela ajuda os desenvolvedores a detectar potenciais erros de código, inconsistências e problemas de tipo durante o desenvolvimento. O PHPStan examina o código-fonte do PHP sem realmente executá-lo e fornece feedback sobre possíveis problemas, como chamadas de métodos inexistentes, acessos a propriedades indefinidas, erros de tipo e muito mais. Isso ajuda os desenvolvedores a escrever código mais seguro, robusto e menos propenso a erros.
 
+```bash
+make stan // analisador erros no código
+```
+
 
 **Laravel Pint** é um corretor de estilo de código. Ele é construído sobre o PHP-CS-Fixer e torna simples garantir que seu estilo de código permaneça limpo e consistente.
+
+```bash
+make pint // aplica estilização de código conforme PSR
+```
 
 **Mailpit** é uma ferramenta de teste de e-mail multiplataforma e API para desenvolvedores. Ele atua como um servidor SMTP e fornece uma interface web moderna para visualizar e testar e-mails capturados. Para acessar, utilize a url abaixo:
 
