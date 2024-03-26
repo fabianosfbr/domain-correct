@@ -10,6 +10,8 @@ class EditDomainCorrect extends EditRecord
 {
     protected static string $resource = DomainCorrectResource::class;
 
+    protected ?string $heading = 'Editar Domínio';
+
     protected function getHeaderActions(): array
     {
         return [

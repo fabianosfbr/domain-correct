@@ -18,7 +18,8 @@ class NotCorrectRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('address')
+                Forms\Components\TextInput::make('name')
+                    ->label('Domínio')
                     ->required()
                     ->columnSpan(2)
                     ->maxLength(100),
@@ -28,20 +29,23 @@ class NotCorrectRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('address')
-            ->heading('List of not correct addresses')
+            ->recordTitleAttribute('name')
+            ->heading('Lista de domínios sugestos')
             ->paginated([10, 25, 50, 100])
             ->recordUrl(null)
             ->striped()
             ->columns([
-                Tables\Columns\TextColumn::make('address'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Domínio'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
-                ->modalWidth('lg'),
+                    ->label('Adicionar Sugestão')
+                    ->modalWidth('lg')
+                    ->modalHeading('Adicionar Sugestão'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

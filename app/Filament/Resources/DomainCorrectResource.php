@@ -20,13 +20,17 @@ class DomainCorrectResource extends Resource
 {
     protected static ?string $model = DomainCorrect::class;
 
+    protected static ?string $modelLabel = 'Controle de Domínios';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('address')->required(),
+                TextInput::make('name')
+                ->label('Domínio')
+                ->required(),
             ]);
     }
 
@@ -37,18 +41,19 @@ class DomainCorrectResource extends Resource
             ->recordUrl(null)
             ->striped()
             ->columns([
-                TextColumn::make('address')
+                TextColumn::make('name')
+                ->label('Domínio')
                 ->searchable(),
                 TextColumn::make('not_correct_count')
                     ->counts('not_correct')
-                    ->label('Nº Not Correct'),
+                    ->label('Nº Sugestões'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                ->label('Not Correct'),
+                ->label('Sugestões'),
             ])
             ->bulkActions([]);
     }

@@ -37,7 +37,7 @@ class DomainValidationService
                 'is_valid' => $checkMx,
                 'user' => $userDomain[0],
                 'domain' => $validated?->address ?? $userDomain[1],
-                'sugestion' => $validated?->correct->address,
+                'sugestion' => $validated?->correct->name,
             ];
         });
     }

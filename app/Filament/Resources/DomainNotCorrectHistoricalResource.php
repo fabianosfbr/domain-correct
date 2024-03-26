@@ -19,6 +19,8 @@ class DomainNotCorrectHistoricalResource extends Resource
 {
     protected static ?string $model = DomainNotCorrectHistorical::class;
 
+    protected static ?string $modelLabel = 'Relatório de Não Conformidade';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -36,8 +38,10 @@ class DomainNotCorrectHistoricalResource extends Resource
             ->recordUrl(null)
             ->striped()
             ->columns([
-                TextColumn::make('address'),
+                TextColumn::make('name')
+                    ->label('Domínio'),
                 TextColumn::make('created_at')
+                    ->label('Data de Criação')
                     ->date('d/m/Y'),
                 TextColumn::make('total')
                     ->label('Nº Occurrences'),
@@ -75,10 +79,10 @@ class DomainNotCorrectHistoricalResource extends Resource
             ->select(
                 DB::raw('MIN(id) as id'),
                 DB::raw('MAX(created_at) as created_at'),
-                DB::raw('address'),
+                DB::raw('name'),
                 DB::raw('count(*) as total')
             )
             ->orderBy('created_at', 'desc')
-            ->groupBy('address');
+            ->groupBy('name');
     }
 }

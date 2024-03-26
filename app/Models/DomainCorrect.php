@@ -16,7 +16,7 @@ class DomainCorrect extends Model
     {
         return $this->hasMany(
             DomainNotCorrect::class,
-            'not_correct_id', // foreignKey By Default Parent Model + Promary Key
+            'domain_correct_id', // foreignKey By Default Parent Model + Promary Key
             'id' // localKey => Primary Key In Parent Table By Default is Id
         );
     }

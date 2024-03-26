@@ -12,13 +12,13 @@ class DomainCorrecRepository
     {
         $domain = explode('@', $email)[1];
 
-        return DomainNotCorrect::with('correct')->where('address', $domain)->first();
+        return DomainNotCorrect::with('correct')->where('name', $domain)->first();
     }
 
 
     public function historical(string $domain): DomainNotCorrectHistorical|null
     {
 
-        return DomainNotCorrectHistorical::create(['address' => $domain]);
+        return DomainNotCorrectHistorical::create(['name' => $domain]);
     }
 }
