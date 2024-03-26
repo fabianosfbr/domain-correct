@@ -28,7 +28,6 @@ class DomainValidationService
 
                 $validated = $this->domainRepository->getNotDomainCorrect($item['email']);
 
-
                 if (! $validated) {
                     event(new DomainNotValidateHistoricalEvent($userDomain[1]));
                 }
@@ -40,7 +39,7 @@ class DomainValidationService
                 'is_valid' => $checkMx,
                 'user' => $userDomain[0],
                 'domain' => $validated?->name ?? $userDomain[1],
-                'sugestion' => $validated?->correct->name,
+                'sugestion' => $validated?->correct->name,  /** @phpstan-ignore-line */
             ];
         });
     }

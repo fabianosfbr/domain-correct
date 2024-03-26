@@ -40,3 +40,18 @@ build:
 	@echo "--> Building all docker containers..."
 	@./vendor/bin/sail build --no-cache
 
+.PHONY:	stan
+stan:
+	@echo "--> Analysing error in code..."
+	@./vendor/bin/sail bin phpstan analyse --memory-limit=2G
+
+.PHONY:	pint
+pint:
+	@echo "--> Styling code..."
+	@./vendor/bin/sail bin pint -v
+
+
+.PHONY:	commit
+commit: stan pint
+
+
