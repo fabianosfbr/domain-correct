@@ -25,7 +25,6 @@ class EmailController extends Controller
      */
     public function validate(ValidateEmailRequest $request)
     {
-
         $validatedEmails = $this->domainValidationService->validate(collect($request->data));
 
         return response()->json($validatedEmails->toArray(), 200);

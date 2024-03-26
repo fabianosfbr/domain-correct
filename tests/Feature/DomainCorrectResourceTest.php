@@ -10,17 +10,14 @@ use Filament\Actions\DeleteAction;
 use Livewire\Livewire;
 
 it('can render the index page', function () {
-
     $this->get(DomainCorrectResource::getUrl('index'))->assertSuccessful();
 });
 
 it('can render the create page', function () {
-
     $this->get(DomainCorrectResource::getUrl('create'))->assertSuccessful();
 });
 
 it('can create domain correct', function () {
-
     $newDomain = DomainCorrect::factory()->make();
 
     Livewire::test(DomainCorrectResource\Pages\CreateDomainCorrect::class)
@@ -51,7 +48,6 @@ it('can validate form errors on create', function (DomainCorrect $newDomain) {
 ]);
 
 it('can render the edit page', function () {
-
     $domain = DomainCorrect::factory()->create(['name' => 'gmail.com']);
 
     $this->get(DomainCorrectResource::getUrl('edit', ['record' => $domain]))->assertOk();
@@ -60,7 +56,7 @@ it('can render the edit page', function () {
 it('can retrieve data in edit page', function () {
     $domain = DomainCorrect::factory()->create();
 
-    $this->livewire(DomainCorrectResource\Pages\EditDomainCorrect::class, [
+    $this->livewire(EditDomainCorrect::class, [
         'record' => $domain->getRouteKey(),
     ])
         ->assertFormSet([
@@ -76,7 +72,7 @@ it('can update the domain correct', function () {
             'name' => fake()->domainName(),
         ])->make();
 
-    Livewire::test(DomainCorrectResource\Pages\EditDomainCorrect::class, [
+    Livewire::test(EditDomainCorrect::class, [
         'record' => $domain->getRouteKey(),
     ])
         ->fillForm([
@@ -92,7 +88,7 @@ it('can update the domain correct', function () {
 it('can validate form errors on edit', function (DomainCorrect $updateDomain) {
     $domain = DomainCorrect::factory()->create();
 
-    Livewire::test(DomainCorrectResource\Pages\EditDomainCorrect::class, [
+    Livewire::test(EditDomainCorrect::class, [
         'record' => $domain->getRouteKey(),
     ])
         ->fillForm([
@@ -121,7 +117,7 @@ it('can list domain corrects', function () {
 it('can delete a domain from the edit domain form', function () {
     $domain = DomainCorrect::factory()->create();
 
-    Livewire::test(DomainCorrectResource\Pages\EditDomainCorrect::class, [
+    Livewire::test(EditDomainCorrect::class, [
         'record' => $domain->getRouteKey(),
     ])
         ->callAction(DeleteAction::class);

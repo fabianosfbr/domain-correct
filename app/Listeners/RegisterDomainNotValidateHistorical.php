@@ -22,7 +22,6 @@ class RegisterDomainNotValidateHistorical implements ShouldQueue
      */
     public function handle(DomainNotValidateHistoricalEvent $event): void
     {
-
         $this->domainRepository->historical($event->domain);
     }
 }

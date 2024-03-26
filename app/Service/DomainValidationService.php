@@ -15,9 +15,7 @@ class DomainValidationService
 
     public function validate(Collection $data): Collection
     {
-
         return $data->map(function ($item) {
-
             $userDomain = explode('@', $item['email']);
 
             $checkMx = checkdnsrr($userDomain[1], 'MX');
@@ -25,13 +23,11 @@ class DomainValidationService
             $validated = null;
 
             if (! $checkMx) {
-
                 $validated = $this->domainRepository->getNotDomainCorrect($item['email']);
 
                 if (! $validated) {
                     event(new DomainNotValidateHistoricalEvent($userDomain[1]));
                 }
-
             }
 
             return [

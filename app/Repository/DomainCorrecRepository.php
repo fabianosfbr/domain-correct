@@ -17,7 +17,6 @@ class DomainCorrecRepository
 
     public function historical(string $domain): ?DomainNotCorrectHistorical
     {
-
         return DomainNotCorrectHistorical::create(['name' => $domain]);
     }
 }

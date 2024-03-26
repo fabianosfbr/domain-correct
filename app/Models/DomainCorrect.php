@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DomainCorrect extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
+    use HasUuids;
 
     protected $guarded = ['id'];
 
