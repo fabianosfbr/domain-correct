@@ -27,6 +27,34 @@ make
 ```
 
 Agora, basta acessar a URL `http://localhost`
+
+---
+### :books: Comandos make 
+Simplesmente execute o comando `make` no seu terminal:
+```bash
+make up // inicializa o projeto (docker)
+```
+
+```bash
+make down // encerra o projeto (docker)
+```
+
+```bash
+make restart // executa make down e make up
+```
+
+```bash
+make populate // roda migrate:fresh --seed
+```
+
+```bash
+make stan // analisador erros no código
+```
+
+```bash
+make pint // aplica estilização de código conforme PSR
+```
+
 ## :information_source: Como Utilizar a API
 A api verifica a estrutura do email verificando se as informações do email são válidas.
 
