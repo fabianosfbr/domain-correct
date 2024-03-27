@@ -69,6 +69,12 @@ make pint // aplica estilização de código conforme PSR
 http://localhost:8025
 ```
 
+## :heavy_check_mark: Tarefas pendentes do projeto
+
+- [ ] Criar área do perfil do usuário (usar cluster do Filament)
+- [ ] Customizar página de registro de usuário
+- [ ] Customizar página de login do usuário
+- [ ] Customizar emails padrão do Lavavel (novo header com logo)
 
 
 
