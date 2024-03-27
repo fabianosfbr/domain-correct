@@ -32,6 +32,16 @@ down:
 	@echo "--> Stopping all docker containers..."
 	@./vendor/bin/sail down
 
+.PHONY:	ql
+ql:
+	@echo "--> Initializing queue..."
+	@./vendor/bin/sail art queue:listen
+
+.PHONY:	qr
+qr:
+	@echo "--> Finishin queue..."
+	@./vendor/bin/sail art queue:restart
+
 .PHONY:	restart
 restart:	down up
 
