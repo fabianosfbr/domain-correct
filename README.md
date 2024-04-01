@@ -71,10 +71,10 @@ http://localhost:8025
 
 ## :heavy_check_mark: Tarefas pendentes do projeto
 
-- [ ] Criar área do perfil do usuário (usar cluster do Filament)
-  - [ ] Api Key  + sanctum
-- [ ] Customizar página de registro de usuário
-- [ ] Customizar página de login do usuário
+- [x] Criar área do perfil do usuário (usar cluster do Filament)
+  - [x] Api Key  + sanctum
+- [x] Customizar página de registro de usuário
+- [x] Customizar página de login do usuário
 - [ ] Customizar emails padrão do Lavavel (novo header com logo)
 
 
