@@ -23,7 +23,7 @@ class ValidateEmailRequest extends FormRequest
     {
         return [
             // Array of data to validate.
-            'data' => 'required|array',
+            'data' => 'required|array|max:20',
             // Each item in the array should be an object with an email property.
             'data.*.email' => 'required|email',
         ];

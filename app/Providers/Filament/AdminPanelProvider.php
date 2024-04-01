@@ -2,11 +2,15 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Clusters\UserProfile\Pages\ViewUserProfilePage;
+use App\Filament\Pages\Auth\LoginPage;
+use App\Filament\Pages\Auth\RegisterPage;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Widgets\AppInfoOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -29,18 +33,18 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandLogo(asset('images/logo-white.png'))
             ->brandLogoHeight('38px')
-            ->login()
-            ->registration()
+            ->login(LoginPage::class)
+            ->registration(RegisterPage::class)
             ->passwordReset()
             ->emailVerification()
-            ->profile()
-            ->topNavigation(true)
+            ->topNavigation()
             ->colors([
                 'primary' => Color::Blue,
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->pages([
                 Dashboard::class,
             ])
@@ -62,6 +66,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])->userMenuItems([
+                'profile' => MenuItem::make('Profile')
+                    ->icon('heroicon-o-user')
+                    ->url(fn (): string => ViewUserProfilePage::getUrl()),
             ]);
     }
 }
