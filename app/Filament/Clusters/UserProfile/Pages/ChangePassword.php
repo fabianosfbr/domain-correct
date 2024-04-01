@@ -37,6 +37,7 @@ class ChangePassword extends Page
     {
         $this->user = auth()->user();
 
+        // @phpstan-ignore-next-line
         $this->form->fill();
     }
 
@@ -85,6 +86,7 @@ class ChangePassword extends Page
 
     public function submit()
     {
+        // @phpstan-ignore-next-line
         $data = $this->form->getState();
 
         $this->user->update([
@@ -92,9 +94,10 @@ class ChangePassword extends Page
         ]);
 
         if (request()->hasSession() && array_key_exists('password', $data)) {
-            request()->session()->put(['password_hash_'.Filament::getAuthGuard() => $data['password']]);
+            request()->session()->put(['password_hash_' . Filament::getAuthGuard() => $data['password']]);
         }
 
+        // @phpstan-ignore-next-line
         $this->form->fill();
 
         Notification::make()
