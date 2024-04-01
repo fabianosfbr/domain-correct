@@ -1,12 +1,10 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 
 Artisan::command('play', function () {
-    $email = 'email@gmaill.com';
+    $user = User::first();
 
-    $repository = new App\Repository\DomainCorrecRepository();
-    $domain = $repository->getNotDomainCorrect($email);
-
-    dd($domain->correct->address);
+    dd($user);
 });
