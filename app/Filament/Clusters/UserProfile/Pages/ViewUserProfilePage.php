@@ -69,9 +69,7 @@ class ViewUserProfilePage extends Page implements HasInfolists
                             ->columnSpan(2)
                             ->formatStateUsing(
                                 fn (string $state): HtmlString => new HtmlString(
-                                    '<div>'.
-                                        substr_replace($state, str_repeat('*', ceil(strlen($state) * 0.90)), 0, ceil(strlen($state) * 0.90))
-                                        .'</div>'
+                                    substr_replace($state, str_repeat('*', (int) ceil(strlen($state) * 0.90)), 0, (int) ceil(strlen($state) * 0.90))
                                 )
                             )
                             ->html(),

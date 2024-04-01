@@ -22,13 +22,13 @@ class EmailController extends Controller
      * Validate email
      *
      * To send request to this endpoint, you need to provide and `API KEY` in the header of the request.
-     * 
+     *
      * You can use the following instruction in your header to send request to this endpoint.
-     * 
+     *
      * ````
      *  Authorization: Bearer YOUR_API_KEY
      * ````
-     * 
+     *
      * @param  ValidateEmailRequest  $request  Request data
      * @return \Illuminate\Http\JsonResponse
      *
