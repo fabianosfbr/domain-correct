@@ -11,6 +11,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class DomainNotCorrectHistoricalResource extends Resource
 {
@@ -19,6 +20,11 @@ class DomainNotCorrectHistoricalResource extends Resource
     protected static ?string $modelLabel = 'Relatório de Não Conformidade';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function canAccess(): bool
+    {
+        return Gate::allows('accessNotCorrectHistoricalResource', auth()->user());
+    }
 
     public static function form(Form $form): Form
     {

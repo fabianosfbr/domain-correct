@@ -76,7 +76,7 @@ http://localhost:8025
 - [x] Customizar página de registro de usuário
 - [x] Customizar página de login do usuário
 - [ ] Customizar emails padrão do Lavavel (novo header com logo)
-
+- [ ] Implementar liberação de painéis de cliente e admin
 
 
 ## :information_source: Como Utilizar a API
