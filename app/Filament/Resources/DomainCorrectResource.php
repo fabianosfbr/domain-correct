@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Gate;
 
 class DomainCorrectResource extends Resource
 {
@@ -19,6 +20,11 @@ class DomainCorrectResource extends Resource
     protected static ?string $modelLabel = 'Controle de Domínios';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function canAccess(): bool
+    {
+        return Gate::allows('accessDomainCorrectResource', auth()->user());
+    }
 
     public static function form(Form $form): Form
     {
