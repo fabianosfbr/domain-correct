@@ -76,8 +76,12 @@ http://localhost:8025
 - [x] Customizar página de registro de usuário
 - [x] Customizar página de login do usuário
 - [ ] Customizar emails padrão do Lavavel (novo header com logo)
-- [ ] Implementar liberação de painéis de cliente e admin
-
+- [x] Implementar liberação de painéis de cliente e admin
+- [x] Acrescentar Painel UserResources
+- [x] Acrescentar Página editar usuário
+- [x] Acrescentar funcionalidade vincular Domain not correct
+- [ ] Widgets para o admin
+- [ ] Dashboard do cliente com orientacoes de uso
 
 ## :information_source: Como Utilizar a API
 A api verifica a estrutura do email verificando se as informações do email são válidas.
