@@ -23,4 +23,12 @@ class UserPolicy
             ? Response::allow()
             : Response::deny('Você não tem permissão para acessar este recurso.');
     }
+
+    public function accessUserResource(User $user): Response
+    {
+        // @phpstan-ignore-next-line
+        return $user->role === UserRole::ADMIN
+            ? Response::allow()
+            : Response::deny('Você não tem permissão para acessar este recurso.');
+    }
 }
