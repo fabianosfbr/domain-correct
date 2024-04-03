@@ -27,7 +27,7 @@ class ChangePassword extends Page
 
     protected static ?string $cluster = UserProfile::class;
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public ?array $data = [];
 
@@ -55,31 +55,37 @@ class ChangePassword extends Page
                             ->required()
                             ->revealable()
                             ->password()
-                            ->rule(Password::min(8)->mixedCase()->letters()->numbers()->symbols())
+                            ->rule(
+                                Password::default()
+                                    ->mixedCase()
+                                    ->symbols()
+                                    ->numbers()
+                            )
                             ->autocomplete('new-password')
                             ->dehydrated(fn ($state): bool => filled($state))
                             ->dehydrateStateUsing(fn ($state): string => Hash::make($state))
+                            ->placeholder('A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.')
                             ->live(debounce: 500)
                             ->same('passwordConfirmation')
                             ->autofocus()
                             ->validationMessages([
                                 'required' => 'A senha é obrigatória',
-                                'mixed_case' => 'A senha deve conter letras maiúsculas e minúsculas',
-                                'letters' => 'A senha deve conter letras',
-                                'numbers' => 'A senha deve conter números',
-                                'symbols' => 'A senha deve conter símbolos',
                                 'min' => 'A senha deve ter pelo menos 8 caracteres',
-                                'capital' => 'A senha deve conter letras maiúsculas',
-                                'same' => 'A confirmação de senha deve ser igual à senha',
-
+                                'same' => 'A senha deve ser igual à confirmação de senha',
+                                'password.mixed' => 'A senha deve conter letras maiúsculas e minúsculas',
+                                'password.symbols' => 'A senha deve conter símbolos',
+                                'password.numbers' => 'A senha deve conter números',
+                                'password.letters' => 'A senha deve conter letras',
                             ]),
                         TextInput::make('passwordConfirmation')
                             ->label('Confirmar senha')
                             ->password()
                             ->revealable()
                             ->required()
+                            ->placeholder('Confirme a senha digitada acima')
                             ->dehydrated(false),
-                    ]),
+                    ])
+                    ->icon('heroicon-o-key'),
             ])
             ->statePath('data');
     }

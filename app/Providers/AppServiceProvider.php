@@ -25,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(User::class, UserPolicy::class);
         Gate::define('accessDomainCorrectResource', [UserPolicy::class, 'accessDomainCorrectResource']);
         Gate::define('accessNotCorrectHistoricalResource', [UserPolicy::class, 'accessNotCorrectHistoricalResource']);
+        Gate::define('accessUserResource', [UserPolicy::class, 'accessUserResource']);
     }
 }

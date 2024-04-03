@@ -51,7 +51,8 @@ class ViewUserProfilePage extends Page implements HasInfolists
                             ->label('Nome'),
                         TextEntry::make('email')
                             ->label('E-mail'),
-                    ]),
+                    ])
+                    ->icon('heroicon-o-user'),
                 Section::make('Dados da Conta')
                     ->columns([
                         'sm' => 3,
@@ -76,7 +77,8 @@ class ViewUserProfilePage extends Page implements HasInfolists
                         GenerateApiKey::make('generate_api_token')
                             ->label('Gerar nova API key')
                             ->columnSpan(1),
-                    ]),
+                    ])
+                    ->icon('heroicon-o-information-circle'),
             ]);
     }
 
