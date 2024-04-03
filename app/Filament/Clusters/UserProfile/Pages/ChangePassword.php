@@ -55,7 +55,12 @@ class ChangePassword extends Page
                             ->required()
                             ->revealable()
                             ->password()
-                            ->rule(Password::min(8)->mixedCase()->letters()->numbers()->symbols())
+                            ->rule(
+                                Password::default()
+                                    ->mixedCase()
+                                    ->symbols()
+                                    ->numbers()
+                            )
                             ->autocomplete('new-password')
                             ->dehydrated(fn ($state): bool => filled($state))
                             ->dehydrateStateUsing(fn ($state): string => Hash::make($state))
@@ -65,14 +70,12 @@ class ChangePassword extends Page
                             ->autofocus()
                             ->validationMessages([
                                 'required' => 'A senha é obrigatória',
-                                'mixed_case' => 'A senha deve conter letras maiúsculas e minúsculas',
-                                'letters' => 'A senha deve conter letras',
-                                'numbers' => 'A senha deve conter números',
-                                'symbols' => 'A senha deve conter símbolos',
                                 'min' => 'A senha deve ter pelo menos 8 caracteres',
-                                'capital' => 'A senha deve conter letras maiúsculas',
-                                'same' => 'A confirmação de senha deve ser igual à senha',
-
+                                'same' => 'A senha deve ser igual à confirmação de senha',
+                                'password.mixed' => 'A senha deve conter letras maiúsculas e minúsculas',
+                                'password.symbols' => 'A senha deve conter símbolos',
+                                'password.numbers' => 'A senha deve conter números',
+                                'password.letters' => 'A senha deve conter letras',
                             ]),
                         TextInput::make('passwordConfirmation')
                             ->label('Confirmar senha')

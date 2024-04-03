@@ -13,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rules\Password;
 
 class UserResource extends Resource
 {
@@ -55,8 +56,23 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->label('Senha')
                             ->password()
+                            ->rule(
+                                Password::default()
+                                    ->mixedCase()
+                                    ->symbols()
+                                    ->numbers()
+                            )
                             ->required()
-                            ->placeholder('Informe a senha'),
+                            ->placeholder('Informe a senha')
+                            ->validationMessages([
+                                'required' => 'A senha é obrigatória',
+                                'min' => 'A senha deve ter pelo menos 8 caracteres',
+                                'same' => 'A senha deve ser igual à confirmação de senha',
+                                'password.mixed' => 'A senha deve conter letras maiúsculas e minúsculas',
+                                'password.symbols' => 'A senha deve conter símbolos',
+                                'password.numbers' => 'A senha deve conter números',
+                                'password.letters' => 'A senha deve conter letras',
+                            ]),
                     ]),
             ]);
     }
