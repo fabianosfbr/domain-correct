@@ -3,10 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DomainNotCorrectHistoricalResource\Pages;
+use App\Models\DomainCorrect;
+use App\Models\DomainNotCorrect;
 use App\Models\DomainNotCorrectHistorical;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +24,7 @@ class DomainNotCorrectHistoricalResource extends Resource
 
     protected static ?string $modelLabel = 'Relatório de Não Conformidade';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-exclamation-triangle';
 
     public static function canAccess(): bool
     {
@@ -54,8 +59,44 @@ class DomainNotCorrectHistoricalResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->label('Vincular'),
+                Action::make('vincular')
+                    ->label('Vincular')
+                    ->icon('heroicon-o-link')
+                    ->modalWidth('lg')
+                    ->form([
+                        Placeholder::make('name')
+                            ->label('Domínio')
+                            ->content(
+                                fn (DomainNotCorrectHistorical $record): string => "O domínio {$record->name} será vinculado ao domínio selecionado abaixo."
+                            ),
+                        Select::make('domain_correct_id')
+                            ->label('')
+                            ->required()
+                            ->options(
+                                DomainCorrect::all()->pluck('name', 'id')
+                            )
+                            ->searchable(),
+                    ])
+                    ->action(function (DomainNotCorrectHistorical $record, array $data) {
+                        try {
+                            DomainNotCorrect::create([
+                                'name' => $record->name,
+                                'domain_correct_id' => $data['domain_correct_id'],
+                            ]);
+
+                            Notification::make()
+                                ->title('Sucesso')
+                                ->body('Domínio vinculado com sucesso')
+                                ->color('success')
+                                ->send();
+                        } catch (\Exception $exception) {
+                            Notification::make()
+                                ->title('Erro')
+                                ->body('Erro ao vincular domínio')
+                                ->color('danger')
+                                ->send();
+                        }
+                    }),
             ])
             ->bulkActions([]);
     }
@@ -85,6 +126,7 @@ class DomainNotCorrectHistoricalResource extends Resource
                 DB::raw('name'),
                 DB::raw('count(*) as total')
             )
+            ->whereNotIn('name', DomainNotCorrect::all()->pluck('name'))
             ->orderBy('created_at', 'desc')
             ->groupBy('name');
     }

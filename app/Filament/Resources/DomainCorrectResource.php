@@ -19,7 +19,7 @@ class DomainCorrectResource extends Resource
 
     protected static ?string $modelLabel = 'Controle de Domínios';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-check-badge';
 
     public static function canAccess(): bool
     {

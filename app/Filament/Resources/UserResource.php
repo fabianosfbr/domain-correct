@@ -118,11 +118,6 @@ class UserResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->label('')
                     ->iconSize('md'),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
             ]);
     }
 
