@@ -10,14 +10,16 @@ class UserPolicy
 {
     public function accessDomainCorrectResource(User $user): Response
     {
-        return $user->role->value === UserRole::ADMIN->value
+        // @phpstan-ignore-next-line
+        return $user->role === UserRole::ADMIN
             ? Response::allow()
             : Response::deny('Você não tem permissão para acessar este recurso.');
     }
 
     public function accessNotCorrectHistoricalResource(User $user): Response
     {
-        return $user->role->value === UserRole::ADMIN->value
+        // @phpstan-ignore-next-line
+        return $user->role === UserRole::ADMIN
             ? Response::allow()
             : Response::deny('Você não tem permissão para acessar este recurso.');
     }

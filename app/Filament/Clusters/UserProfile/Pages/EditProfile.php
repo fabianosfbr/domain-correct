@@ -80,6 +80,7 @@ class EditProfile extends Page implements HasForms
 
     public function submit(): void
     {
+        // @phpstan-ignore-next-line
         $data = $this->form->getState();
 
         try {
