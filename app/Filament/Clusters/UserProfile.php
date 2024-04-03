@@ -6,6 +6,9 @@ use Filament\Clusters\Cluster;
 
 class UserProfile extends Cluster
 {
+
+    protected static ?string $model = User::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function shouldRegisterNavigation(): bool

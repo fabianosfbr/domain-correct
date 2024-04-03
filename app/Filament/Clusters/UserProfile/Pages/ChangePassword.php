@@ -27,7 +27,7 @@ class ChangePassword extends Page
 
     protected static ?string $cluster = UserProfile::class;
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public ?array $data = [];
 
@@ -59,6 +59,7 @@ class ChangePassword extends Page
                             ->autocomplete('new-password')
                             ->dehydrated(fn ($state): bool => filled($state))
                             ->dehydrateStateUsing(fn ($state): string => Hash::make($state))
+                            ->placeholder('A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.')
                             ->live(debounce: 500)
                             ->same('passwordConfirmation')
                             ->autofocus()
@@ -78,8 +79,10 @@ class ChangePassword extends Page
                             ->password()
                             ->revealable()
                             ->required()
+                            ->placeholder('Confirme a senha digitada acima')
                             ->dehydrated(false),
-                    ]),
+                    ])
+                    ->icon('heroicon-o-key'),
             ])
             ->statePath('data');
     }
@@ -94,7 +97,7 @@ class ChangePassword extends Page
         ]);
 
         if (request()->hasSession() && array_key_exists('password', $data)) {
-            request()->session()->put(['password_hash_'.Filament::getAuthGuard() => $data['password']]);
+            request()->session()->put(['password_hash_' . Filament::getAuthGuard() => $data['password']]);
         }
 
         // @phpstan-ignore-next-line
