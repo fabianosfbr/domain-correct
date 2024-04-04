@@ -73,7 +73,7 @@ class DomainNotCorrectHistoricalResource extends Resource
                             ->label('')
                             ->required()
                             ->options(
-                                DomainCorrect::all()->pluck('name', 'id')
+                                DomainCorrect::pluck('name', 'id')->toArray()
                             )
                             ->searchable(),
                     ])
@@ -126,7 +126,7 @@ class DomainNotCorrectHistoricalResource extends Resource
                 DB::raw('name'),
                 DB::raw('count(*) as total')
             )
-            ->whereNotIn('name', DomainNotCorrect::all()->pluck('name'))
+            ->whereNotIn('name', DomainNotCorrect::pluck('name')->toArray())
             ->orderBy('created_at', 'desc')
             ->groupBy('name');
     }
