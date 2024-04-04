@@ -42,6 +42,7 @@ class DomainCorrectResource extends Resource
             ->paginated([10, 25, 50, 100])
             ->recordUrl(null)
             ->striped()
+            ->emptyStateDescription('Quando houver domínios cadastrados eles aparecerão aqui.')
             ->columns([
                 TextColumn::make('name')
                     ->label('Domínio')
