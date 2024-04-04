@@ -7,6 +7,10 @@ use App\Filament\Pages\Auth\LoginPage;
 use App\Filament\Pages\Auth\RegisterPage;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Widgets\AppInfoOverview;
+use App\Filament\Widgets\DomainNotCorrectsChart;
+use App\Filament\Widgets\LatestDomainNotCorrects;
+use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\UsersChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -52,6 +56,10 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 AppInfoOverview::class,
+                StatsOverview::class,
+                DomainNotCorrectsChart::class,
+                UsersChart::class,
+                LatestDomainNotCorrects::class,
             ])
             ->middleware([
                 EncryptCookies::class,

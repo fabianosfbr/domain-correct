@@ -26,6 +26,16 @@ class DomainNotCorrectHistoricalResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-exclamation-triangle';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) DomainNotCorrectHistorical::whereNotIn('name', DomainNotCorrect::pluck('name')->toArray())->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return (string) DomainNotCorrectHistorical::whereNotIn('name', DomainNotCorrect::pluck('name')->toArray())->count() > 0 ? 'danger' : 'success';
+    }
+
     public static function canAccess(): bool
     {
         return Gate::allows('accessNotCorrectHistoricalResource', auth()->user());
