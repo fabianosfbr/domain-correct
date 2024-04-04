@@ -1,5 +1,5 @@
 <p align="center">
-	<h2 align="center">Domain Correct API</h2>
+	<h2 align="center">Domain Correct</h2>
 </p>
 <h4 align="center"> 
 	🚧  Projeto 🚀 em construção...  🚧
@@ -7,11 +7,24 @@
 <p align="center">
 	<img src="https://img.shields.io/badge/version project-1.0-brightgreen" alt="version project">
     <img src="https://img.shields.io/badge/Php-8.3.3-informational" alt="stack php">
-    <img src="https://img.shields.io/badge/Laravel-11.00-informational&color=brightgreen" alt="stack laravel">
+    <img src="https://img.shields.io/badge/Laravel-10.46-informational&color=brightgreen" alt="stack laravel">
+    <img src="https://img.shields.io/badge/Filament-3.2-informational" alt="stack Filament">
+    <img src="https://img.shields.io/badge/TailwindCss-3.1-informational" alt="stack Tailwind">
 	<a href="https://opensource.org/licenses/GPL-3.0">
 		<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GPLv3 License">
 	</a>
 </p>
+
+### :books: `DER` Diagramação base do projeto
+> As classes do sistema estão definidas em um diagrama de classes.
+
+<p align="center" style="margin-top: 30px">
+	<a href="#"  target="_blank" title="Sistema de gestão de freezers">
+		<img src="public/images/info_images/diagram-der.png" alt="info grafic" width="90%">
+	</a>
+</p
+
+<br>
 
 ---
 ### :package: dependências do projeto
@@ -29,6 +42,7 @@ make
 Agora, basta acessar a URL `http://localhost`
 
 ---
+
 ### :books: Comandos make 
 Simplesmente execute o comando `make` no seu terminal:
 ```bash
@@ -55,7 +69,6 @@ make populate // roda migrate:fresh --seed
 ```bash
 make stan // analisador erros no código
 ```
-
 
 **Laravel Pint** é um corretor de estilo de código. Ele é construído sobre o PHP-CS-Fixer e torna simples garantir que seu estilo de código permaneça limpo e consistente.
 
